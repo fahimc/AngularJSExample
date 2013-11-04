@@ -1,17 +1,17 @@
 (function(window) {
-	var app = angular.module("canvas",['ngResource','ngRoute']);
+	var app = angular.module("canvas",['ngResource','ngRoute','ngAnimate']);
 	
 	var config=function($routeProvider)
 	{
 		$routeProvider.when("/",
 		{
 			controller:"SplashController",
-			templateUrl:"template/view/splash.html"
+			templateUrl:"/template/view/splash.html"
 		});
 		$routeProvider.when("/home",
 		{
-			controller:"SplashController",
-			templateUrl:"template/view/home.html"
+			controller:"HomeController",
+			templateUrl:"/template/view/home.html"
 		});
 		$routeProvider.otherwise({redirectTo:"/"});
 	};
