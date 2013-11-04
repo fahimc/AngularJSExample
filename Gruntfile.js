@@ -28,7 +28,7 @@ grunt.file.write("app/index.html", '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01
 grunt.file.write("app/css/style.css", 'html,body { width:100%; height:100%; } *{ } ');
 //make js file
 grunt.file.write("app/js/main.js", '(function(window) { function Main() { if(window.addEventListener) { window.addEventListener("load", onLoad); } else { window.attachEvent("onload", onLoad); } } function onLoad() { } Main(); } )(window);');
-grunt.file.write("app/app.js", '(function() { var express = require("express"); var app = express(); app.use("/js", express.static("./app/js")); app.use("/css", express.static("./app/css")); app.use("/img", express.static("./app/img")); app.listen(3000); app.get("/", function(request, response) { response.sendfile("./app/index.html"); }); })(); ');
+grunt.file.write("app/app.js", '(function() { var express = require("express"); var app = express(); app.use("/js", express.static("./app/js")); app.use("/css", express.static("./app/css")); app.use("/img", express.static("./app/img")); app.use("/lib", express.static("./app/lib")); app.listen(3000); app.get("/", function(request, response) { response.sendfile("./app/index.html"); }); })(); ');
 
 grunt.log.write('Project Setup is Complete').ok();
 });

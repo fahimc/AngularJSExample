@@ -1,1 +1,23 @@
-(function(window) { function Main() { if(window.addEventListener) { window.addEventListener("load", onLoad); } else { window.attachEvent("onload", onLoad); } } function onLoad() { } Main(); } )(window);
+(function(window) {
+	var app = angular.module("canvas",['ngResource','ngRoute']);
+	
+	var config=function($routeProvider)
+	{
+		$routeProvider.when("/",
+		{
+			controller:"SplashController",
+			templateUrl:"template/view/splash.html"
+		});
+		$routeProvider.when("/home",
+		{
+			controller:"SplashController",
+			templateUrl:"template/view/home.html"
+		});
+		$routeProvider.otherwise({redirectTo:"/"});
+	};
+	
+	app.config(config);
+	app.controller(controllers);
+	app.directive(directives);
+	
+} )(window); 
