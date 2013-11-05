@@ -1,0 +1,68 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+.datalist-holder
+{
+font-family: 'Open Sans', sans-serif;
+	color:#fff;
+	
+}
+.datalist-holder li
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	 border-top: 1px solid #333;
+    border-bottom: 1px solid #111;
+   
+  
+}
+.datalist-holder li p
+{
+	display: block;
+	padding-left:5%;
+	padding-right:5%;
+	text-align: center;
+	
+}
+.datalist-wrapper
+{
+	display:block;
+	width:100%;
+	height:100%;
+	max-height:100%;
+	overflow: auto;
+}
+.datalist-wrapper h1
+{
+	text-align: center;
+	color:#fff;
+	font-weight:300;
+}
+.datalist-holder li p.date
+{
+	font-size: 11px;
+	color:#e4e4e4;
+}
+.datalist-holder li p.price
+{
+	color: #D9853B;
+	font-weight: 400;
+}
+.datalist-holder li p.price .title
+{
+	font-size: 11px;
+	color:#fff;
+}
+.datalist-wrapper::-webkit-scrollbar {
+    width: 5%;
+}
+ 
+.datalist-wrapper::-webkit-scrollbar-track {
+	background-color:#000;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+.datalist-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    background-color: #666666;
+}

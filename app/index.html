@@ -12,13 +12,15 @@
 		<script type="text/javascript" src="js/Util/define.js"></script>
 		<script type="text/javascript" src="js/controller/spashController.js"></script>
 		<script type="text/javascript" src="js/controller/homeController.js"></script>
+		<script type="text/javascript" src="js/controller/datalistcontroller.js"></script>
 		<script type="text/javascript" src="js/directive/DatalistDirective.js"></script>
+		<script type="text/javascript" src="js/service/stockdata.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 	</head>
 	<body>
-		<div data-ng-app="canvas">
+		<div data-ng-app="canvas" class="wrapper">
 
-			<ng-view ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}"></ng-view>
+			<ng-view ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" class="view"></ng-view>
 
 		</div>
 	</body>

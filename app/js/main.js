@@ -19,5 +19,7 @@
 	app.config(config);
 	app.controller(controllers);
 	app.directive(directives);
+	app.factory(factories);
+	app.service(services);
 	
 } )(window); 
