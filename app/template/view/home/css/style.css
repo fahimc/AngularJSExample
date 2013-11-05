@@ -1,4 +1,8 @@
-
+*
+{
+	padding:0;
+	margin:0;
+}
 ul.wrapper
 {
 	display:block;
@@ -7,15 +11,30 @@ ul.wrapper
 	height:100%;
 	list-style: none;
 }
-ul.wrapper li
+ul.wrapper li.left 
 {
-	display:block;
+	display:inline-block;
+	width:30%;
 	height:100%;
+	vertical-align:top;
+}
+ul.wrapper li.right 
+{
+	display:inline-block;
+	width:69%;
+	vertical-align:top;
 }
 datalist
 {
 	display:block;
-		width: 30%;
+		width: 100%;
 		background-color: #333;
+		height:100%;
+}
+linegraph
+{
+	display:block;
+		width: 100%;
+		
 		height:100%;
 }
