@@ -1,5 +1,6 @@
 controllers.DataListController = function($scope, $http, StockDataService) {
 	function init() {
+		if(!$scope.data)$scope.data={};
 		$scope.$on(StockDataService.EVENT_ON_DATA_COMPLETE,onDataLoaded);
 		getData();
 	}
@@ -10,11 +11,13 @@ controllers.DataListController = function($scope, $http, StockDataService) {
 	
 	function onDataLoaded(event,data)
 	{
-		console.log("onDataLoaded",data.query);
-		if(!$scope.data)$scope.data={};
+		
+		
 		
 		$scope.data.title = StockDataService.COMPANY;
 		$scope.data.stock = data.query.results.quote;
+		
+		
 	}
 
 	init();
