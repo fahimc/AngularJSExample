@@ -9,7 +9,7 @@ var LineGraph = function() {
 	this.graphLine=null;
 	this.hLinePadding = 20;
 	this.vLinePadding = 20;
-	this.linePaddingLeft = 30;
+	this.linePaddingLeft = 60;
 	this.hPaddingBottom = 60;
 	this.priceLegend = [];
 	this.month = new Array();
@@ -62,11 +62,7 @@ var LineGraph = function() {
 		this.label.color('#FFFFFF');
 		this.appendChild(this.label);
 		
-		this.graphLine=new Sprite();
-		this.graphLine.moveTo(this.linePaddingLeft, this.style.height() - this.hPaddingBottom);
-		this.graphLine.style.lineWidth(2);
-		this.graphLine.style.strokeStyle("#FFF");
-		this.appendChild(this.graphLine);
+		
 
 	};
 	_.update = function(data) {
@@ -77,10 +73,14 @@ var LineGraph = function() {
 
 		this.createHItems();
 
-		var _this = this;
-		setTimeout(function() {
-			_this.createVItems();
-		}, 100);
+		
+		this.createVItems();
+		
+		this.graphLine=new Sprite();
+		this.graphLine.moveTo(this.linePaddingLeft, this.style.height() - this.hPaddingBottom);
+		this.graphLine.style.lineWidth(2);
+		this.graphLine.style.strokeStyle("#D9853B");
+		this.appendChild(this.graphLine);
 		
 		this.drawLine();
 	};
@@ -90,27 +90,31 @@ var LineGraph = function() {
 		var w = Math.floor((this.style.width() - (this.linePaddingLeft + this.hLinePadding + 10)) / this.data.stock.length);
 		var h = Math.floor((this.style.height() - (this.vLinePadding +this.hPaddingBottom)) / (this.priceLegend.length - 1));
 		this.graphLine.moveTo(this.linePaddingLeft, this.style.height() - this.hPaddingBottom);
-		for (var a = 0; a < this.data.stock.length; a++) {
+		var arr = this.data.stock;
+		//arr = arr.reverse();
+		
+		for (var a = 0; a < arr.length; a++) {
 			for (var b = 0; b < this.priceLegend.length; b++) {
-				if( this.data.stock[a].Low==this.priceLegend[b])
+				if( arr[a].Low==this.priceLegend[b])
 				{
-					console.log(this.data.stock[a].Low,this.priceLegend[b]);
-					this.graphLine.lineTo((a * w)+ (this.linePaddingLeft + 10),(b*h)+this.vLinePadding);
+					this.graphLine.lineTo((a * w)+ (this.linePaddingLeft ),(b*h)+this.vLinePadding);
 				}
 			}
 		}
 	};
 	_.createHItems = function() {
 		//calculate width of each price
-		var w = Math.floor((this.style.width() - (this.linePaddingLeft + this.hLinePadding + 10)) / this.data.stock.length);
-		for (var a = 0; a < this.data.stock.length; a++) {
-			var date = new Date(this.data.stock[a].Date);
+		var w = Math.floor((this.style.width() - (this.linePaddingLeft + this.hLinePadding )) / this.data.stock.length);
+		var arr = this.data.stock;
+		arr = arr.reverse();
+		for (var a = 0; a < arr.length; a++) {
+			var date = new Date(arr[a].Date);
 			var month = this.month[date.getMonth()];
 			var item = new HItem();
 			this.appendChild(item);
 			item.index = a;
 			item.style.y(this.style.height() - this.hPaddingBottom);
-			item.style.x((a * w) + (this.linePaddingLeft + 10));
+			item.style.x((a * w) + (this.linePaddingLeft ));
 			item.position();
 			if (a % 3 === 0)item.text(month);
 		}
@@ -123,25 +127,25 @@ var LineGraph = function() {
 			this.appendChild(item);
 			item.index = a;
 			item.style.y((a * h) + this.vLinePadding);
-			item.style.x(this.linePaddingLeft);
-			item.position();
-			if (a % 3 === 0)
+			item.style.x(this.linePaddingLeft+1);
+			item.position((this.style.width() - (this.linePaddingLeft + this.hLinePadding))-item.style.x());
+			if (a== 0||a==this.priceLegend.length-1)
 				item.text(this.priceLegend[a]);
 		}
 	};
 	_.positionItems = function() {
 		var h = Math.floor((this.style.height() - (this.vLinePadding +this.hPaddingBottom)) / (this.priceLegend.length - 1));
-		var w = Math.floor((this.style.width() - (this.linePaddingLeft + this.hLinePadding + 10)) / this.data.stock.length);
+		var w = Math.floor((this.style.width() - (this.linePaddingLeft + this.hLinePadding )) / this.data.stock.length);
 		for (var a = 0; a < this.children.length; a++) {
 			var item = this.children[a];
 			if ( item instanceof VItem) {
 				item.style.y((item.index * h) + this.vLinePadding);
 				item.style.x(this.linePaddingLeft);
-				item.position();
+				item.position((this.style.width() - (this.linePaddingLeft + this.hLinePadding))-item.style.x());
 
 			}else if ( item instanceof HItem) {
 				item.style.y(this.style.height() - this.hPaddingBottom);
-				item.style.x((item.index * w) + (this.linePaddingLeft + 10));
+				item.style.x((item.index * w) + (this.linePaddingLeft ));
 				item.position();
 
 			}
@@ -168,6 +172,10 @@ var LineGraph = function() {
 
 		this.label.style.x(-10);
 		this.label.style.y((h - this.label.style.width()) * 0.5);
-		if(this.data && this.data.stock)this.positionItems();
+		if(this.data && this.data.stock)
+		{
+			this.positionItems();
+			this.drawLine();
+		}
 	};
 })();

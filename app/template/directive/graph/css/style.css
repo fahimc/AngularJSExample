@@ -2,3 +2,9 @@ linegraph
 {
 	background-color: #333;
 }
+linegraph h1
+{
+	font-family: 'Open Sans', sans-serif;
+	padding: 20px;
+	color:#FFFFFF;
+}
